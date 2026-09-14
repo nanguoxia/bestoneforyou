@@ -5,6 +5,7 @@ import "./typography.css";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { siteConfig } from "@/config/site.config";
+import { getAllArticles } from "@/lib/content";
 // Cloudflare Web Analytics: 在 CF Dashboard > Web Analytics 获取 token
 // 或直接在 CF 控制台注入脚本，无需代码改动
 
@@ -38,18 +39,23 @@ export const metadata: Metadata = {
   description: siteConfig.description,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // 顶栏 Featured：自动取最新一篇文章
+  const articles = await getAllArticles();
+  const latest = [...articles].sort((a, b) => (a.date < b.date ? 1 : -1))[0];
+  const featuredArticle = latest ? { title: latest.title, slug: latest.slug } : undefined;
+
   return (
     <html
       lang="en-US"
       className={`${inter.variable} ${playfair.variable} ${jetbrainsMono.variable} ${oswald.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-brand-bg">
-        <SiteHeader site={siteConfig} />
+        <SiteHeader site={siteConfig} featuredArticle={featuredArticle} />
         <main className="flex-1">{children}</main>
         <SiteFooter site={siteConfig} />
       </body>

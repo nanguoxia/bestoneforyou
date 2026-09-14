@@ -6,16 +6,27 @@
 
 import { SiteConfig } from '@/types/article';
 import Link from 'next/link';
-import { Search, Menu, X, User, Globe } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { Search, Menu, X, Globe } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 interface SiteHeaderProps {
   site: SiteConfig;
+  featuredArticle?: { title: string; slug: string };
 }
 
-export function SiteHeader({ site }: SiteHeaderProps) {
+export function SiteHeader({ site, featuredArticle }: SiteHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const router = useRouter();
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const q = (e.currentTarget.elements.namedItem('q') as HTMLInputElement)?.value.trim();
+    if (q) {
+      router.push(`/search?q=${encodeURIComponent(q)}`);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,7 +46,17 @@ export function SiteHeader({ site }: SiteHeaderProps) {
             <div className="flex items-center space-x-4">
               <span className="opacity-90">{new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
               <span className="hidden lg:inline opacity-50">|</span>
-              <span className="hidden lg:inline text-brand-accent font-medium">Featured: 12-Week Strength Training Blueprint</span>
+              {featuredArticle ? (
+                <Link
+                  href={`/article/${featuredArticle.slug}`}
+                  className="hidden lg:inline text-brand-accent font-medium hover:underline max-w-md truncate"
+                  title={featuredArticle.title}
+                >
+                  Featured: {featuredArticle.title}
+                </Link>
+              ) : (
+                <span className="hidden lg:inline text-brand-accent font-medium">Featured: 12-Week Strength Training Blueprint</span>
+              )}
             </div>
             <div className="flex items-center space-x-5">
               <Link href="/#newsletter" className="hover:text-brand-accent transition-colors font-medium tracking-wide">SUBSCRIBE</Link>
@@ -73,21 +94,20 @@ export function SiteHeader({ site }: SiteHeaderProps) {
               </div>
             </Link>
 
-            {/* Search and User */}
+            {/* Search */}
             <div className="flex items-center space-x-2">
-              <div className="hidden md:flex items-center bg-slate-100 rounded-full px-4 py-2">
+              <form
+                onSubmit={handleSearch}
+                className="hidden md:flex items-center bg-slate-100 rounded-full px-4 py-2"
+              >
                 <Search className="h-4 w-4 text-muted-foreground mr-2" />
                 <input
                   type="text"
+                  name="q"
                   placeholder="Search workouts, nutrition..."
                   className="bg-transparent text-sm outline-none w-48"
                 />
-              </div>
-              <button
-                className="hidden md:flex items-center justify-center p-2 text-brand-dark hover:text-brand-primary hover:bg-brand-light rounded-md transition-colors"
-              >
-                <User className="h-5 w-5" />
-              </button>
+              </form>
               <button
                 className="md:hidden flex items-center justify-center p-2 text-brand-dark rounded-md"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
