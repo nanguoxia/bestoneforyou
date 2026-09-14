@@ -38,8 +38,7 @@ export function SiteHeader({ site }: SiteHeaderProps) {
               <span className="hidden lg:inline text-brand-accent font-medium">Featured: 12-Week Strength Training Blueprint</span>
             </div>
             <div className="flex items-center space-x-5">
-              <button className="hover:text-brand-accent transition-colors font-medium tracking-wide">SUBSCRIBE</button>
-              <button className="hover:text-brand-accent transition-colors font-medium tracking-wide">SIGN IN</button>
+              <Link href="/#newsletter" className="hover:text-brand-accent transition-colors font-medium tracking-wide">SUBSCRIBE</Link>
               <div className="hidden md:flex items-center space-x-2 pl-4 border-l border-white/20">
                 <Globe className="h-3 w-3 opacity-70" />
                 <span className="opacity-90">English</span>

@@ -31,7 +31,7 @@ export function NewsletterSubscribe({
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-brand-primary to-brand-secondary text-white">
+    <section id="newsletter" className="py-20 bg-gradient-to-br from-brand-primary to-brand-secondary text-white">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           {/* 图标 */}
