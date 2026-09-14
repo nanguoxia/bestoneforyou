@@ -58,7 +58,7 @@ export function SiteHeader({ site }: SiteHeaderProps) {
             <Link href="/" className="flex items-center space-x-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/logo.jpg"
+                src="/logo.svg"
                 alt={site.name}
                 width={56}
                 height={56}

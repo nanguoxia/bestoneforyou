@@ -22,7 +22,7 @@ export function SiteFooter({ site }: SiteFooterProps) {
             <div className="flex items-center space-x-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/logo.jpg"
+                src="/logo.svg"
                 alt={site.name}
                 width={40}
                 height={40}
