@@ -1,0 +1,425 @@
+{
+  "siteName": "BestOneForYou",
+  "siteType": "fitness-health",
+  "description": "Professional sports and health platform providing expert fitness guides, nutrition advice, and practical wellness strategies",
+
+  "rssFeeds": [
+    {
+      "name": "Men's Health",
+      "url": "https://www.menshealth.com/rss/all.xml/",
+      "language": "en",
+      "categories": ["fitness-training", "nutrition", "weight-management"],
+      "active": true,
+      "priority": 1,
+      "fallback": []
+    },
+    {
+      "name": "Women's Health",
+      "url": "https://www.womenshealthmag.com/rss/all.xml/",
+      "language": "en",
+      "categories": ["fitness-training", "nutrition", "yoga-mobility"],
+      "active": true,
+      "priority": 1,
+      "fallback": []
+    },
+    {
+      "name": "Runner's World",
+      "url": "https://www.runnersworld.com/rss/all.xml/",
+      "language": "en",
+      "categories": ["running", "gear-equipment", "recovery-sleep"],
+      "active": true,
+      "priority": 1,
+      "fallback": []
+    },
+    {
+      "name": "Healthline Fitness",
+      "url": "https://www.healthline.com/fitness/feed",
+      "language": "en",
+      "categories": ["fitness-training", "recovery-sleep", "weight-management"],
+      "active": true,
+      "priority": 1,
+      "fallback": [
+        "https://www.healthline.com/rss"
+      ]
+    },
+    {
+      "name": "Shape Magazine",
+      "url": "https://www.shape.com/rss/all.xml/",
+      "language": "en",
+      "categories": ["fitness-training", "yoga-mobility", "nutrition"],
+      "active": true,
+      "priority": 2,
+      "fallback": []
+    },
+    {
+      "name": "SELF",
+      "url": "https://www.self.com/rss/all.xml/",
+      "language": "en",
+      "categories": ["fitness-training", "nutrition", "yoga-mobility"],
+      "active": true,
+      "priority": 2,
+      "fallback": []
+    },
+    {
+      "name": "Outside Online",
+      "url": "https://www.outsideonline.com/feed",
+      "language": "en",
+      "categories": ["running", "gear-equipment", "fitness-training"],
+      "active": true,
+      "priority": 2,
+      "fallback": []
+    },
+    {
+      "name": "Breaking Muscle",
+      "url": "https://breakingmuscle.com/feed",
+      "language": "en",
+      "categories": ["fitness-training", "gear-equipment", "recovery-sleep"],
+      "active": true,
+      "priority": 2,
+      "fallback": []
+    },
+    {
+      "name": "Nerd Fitness",
+      "url": "https://www.nerdfitness.com/blog/feed/",
+      "language": "en",
+      "categories": ["fitness-training", "weight-management", "nutrition"],
+      "active": true,
+      "priority": 2,
+      "fallback": []
+    },
+    {
+      "name": "Stronger by Science",
+      "url": "https://strongerbyscience.com/feed/",
+      "language": "en",
+      "categories": ["fitness-training", "nutrition"],
+      "active": true,
+      "priority": 2,
+      "fallback": []
+    },
+    {
+      "name": "Precision Nutrition",
+      "url": "https://www.precisionnutrition.com/feed",
+      "language": "en",
+      "categories": ["nutrition", "weight-management"],
+      "active": true,
+      "priority": 2,
+      "fallback": []
+    },
+    {
+      "name": "MyFitnessPal Blog",
+      "url": "https://blog.myfitnesspal.com/feed/",
+      "language": "en",
+      "categories": ["nutrition", "weight-management"],
+      "active": true,
+      "priority": 2,
+      "fallback": []
+    },
+    {
+      "name": "Yoga Journal",
+      "url": "https://www.yogajournal.com/rss/all.xml/",
+      "language": "en",
+      "categories": ["yoga-mobility", "recovery-sleep"],
+      "active": true,
+      "priority": 2,
+      "fallback": []
+    },
+    {
+      "name": "Sleep Foundation",
+      "url": "https://www.sleepfoundation.org/feed",
+      "language": "en",
+      "categories": ["recovery-sleep", "weight-management"],
+      "active": true,
+      "priority": 2,
+      "fallback": []
+    },
+    {
+      "name": "ACE Fitness Blog",
+      "url": "https://www.acefitness.org/feed/",
+      "language": "en",
+      "categories": ["fitness-training", "yoga-mobility"],
+      "active": true,
+      "priority": 3,
+      "fallback": []
+    },
+    {
+      "name": "Examine.com",
+      "url": "https://examine.com/feed/",
+      "language": "en",
+      "categories": ["nutrition", "recovery-sleep"],
+      "active": true,
+      "priority": 3,
+      "fallback": []
+    },
+    {
+      "name": "Verywell Fit",
+      "url": "https://www.verywellfit.com/fitness-and-exercise-4157143.xml",
+      "language": "en",
+      "categories": ["fitness-training", "weight-management", "nutrition"],
+      "active": true,
+      "priority": 2,
+      "fallback": []
+    },
+    {
+      "name": "Garage Gym Reviews",
+      "url": "https://www.garagegymreviews.com/feed/",
+      "language": "en",
+      "categories": ["gear-equipment", "fitness-training"],
+      "active": true,
+      "priority": 3,
+      "fallback": []
+    },
+    {
+      "name": "BarBend",
+      "url": "https://barbend.com/feed/",
+      "language": "en",
+      "categories": ["fitness-training", "gear-equipment", "nutrition"],
+      "active": true,
+      "priority": 2,
+      "fallback": []
+    },
+    {
+      "name": "RunRepeat Blog",
+      "url": "https://runrepeat.com/rss/feed",
+      "language": "en",
+      "categories": ["running", "gear-equipment"],
+      "active": true,
+      "priority": 3,
+      "fallback": []
+    },
+    {
+      "name": "Athletic Greens Blog",
+      "url": "https://athleticgreens.com/blogs/articles/feed",
+      "language": "en",
+      "categories": ["nutrition", "recovery-sleep"],
+      "active": true,
+      "priority": 3,
+      "fallback": []
+    },
+    {
+      "name": "Born Fitness",
+      "url": "https://bornfitness.com/feed/",
+      "language": "en",
+      "categories": ["fitness-training", "weight-management"],
+      "active": true,
+      "priority": 3,
+      "fallback": []
+    },
+    {
+      "name": "The PTDC",
+      "url": "https://www.theptdc.com/feed",
+      "language": "en",
+      "categories": ["fitness-training", "weight-management"],
+      "active": true,
+      "priority": 3,
+      "fallback": []
+    },
+    {
+      "name": "Greatist",
+      "url": "https://greatist.com/rss.xml",
+      "language": "en",
+      "categories": ["fitness-training", "nutrition", "yoga-mobility"],
+      "active": true,
+      "priority": 3,
+      "fallback": []
+    }
+  ],
+
+  "keywords": {
+    "fitness-training": [
+      "strength training for beginners",
+      "best workout routines",
+      "how to build muscle",
+      "progressive overload guide",
+      "full body workout plan",
+      "hiit vs steady state cardio",
+      "home workout without equipment",
+      "dumbbell workout plan",
+      "compound exercises benefits",
+      "workout frequency per week",
+      "warm up before exercise",
+      "functional strength training",
+      "bodyweight training program",
+      "gym routine for beginners",
+      "muscle recovery between workouts"
+    ],
+
+    "running": [
+      "couch to 5k plan",
+      "how to run faster",
+      "marathon training schedule",
+      "half marathon for beginners",
+      "running form tips",
+      "best running shoes 2026",
+      "interval training for runners",
+      "long run pacing guide",
+      "prevent running injuries",
+      "shin splints treatment",
+      "runners knee exercises",
+      "tempo run explained",
+      "treadmill vs outdoor running",
+      "running in hot weather",
+      "race day nutrition"
+    ],
+
+    "nutrition": [
+      "high protein meal prep",
+      "macros for muscle gain",
+      "post workout nutrition",
+      "pre workout meals",
+      "how much protein per day",
+      "healthy breakfast ideas",
+      "carbs before workout",
+      "protein powder guide",
+      "hydration for athletes",
+      "creatine benefits and dosage",
+      "vitamin d for athletes",
+      "iron rich foods for runners",
+      "healthy snacking tips",
+      "plant based athlete diet",
+      "nutrition for recovery"
+    ],
+
+    "weight-management": [
+      "sustainable weight loss",
+      "calorie deficit explained",
+      "how to lose fat and keep muscle",
+      "healthy weight loss rate",
+      "intermittent fasting guide",
+      "weight loss plateau solutions",
+      "portion control tips",
+      "metabolism and weight loss",
+      "emotional eating strategies",
+      "weigh yourself how often",
+      "healthy habits for weight loss",
+      "strength training for fat loss",
+      "cardio vs weights for fat loss",
+      "mindful eating practice",
+      "long term weight maintenance"
+    ],
+
+    "yoga-mobility": [
+      "yoga for beginners",
+      "morning stretch routine",
+      "hip mobility exercises",
+      "desk worker stretches",
+      "static vs dynamic stretching",
+      "yoga poses for flexibility",
+      "thoracic mobility drills",
+      "foam rolling routine",
+      "yin yoga benefits",
+      "yoga for back pain",
+      "shoulder mobility exercises",
+      "flexibility training schedule",
+      "breathing techniques exercise",
+      "yoga for athletes recovery",
+      "hamstring flexibility tips"
+    ],
+
+    "gear-equipment": [
+      "best home gym equipment",
+      "adjustable dumbbells review",
+      "kettlebell training benefits",
+      "fitness tracker accuracy",
+      "resistance bands workout",
+      "best yoga mats",
+      "workout clothes guide",
+      "foam roller buying guide",
+      "massage gun benefits",
+      "smartwatch fitness features",
+      "bench for home gym",
+      "pull up bar installation",
+      "walking pad vs treadmill",
+      "sports bra fitting guide",
+      "budget home gym setup"
+    ],
+
+    "recovery-sleep": [
+      "sleep for athletic performance",
+      "how much sleep do athletes need",
+      "muscle recovery techniques",
+      "active recovery day ideas",
+      "sleep hygiene tips",
+      "rest days importance",
+      "overtraining symptoms",
+      "ice bath benefits",
+      "compression garments recovery",
+      "napping for athletes",
+      "delayed onset muscle soreness",
+      "recovery supplements",
+      "stress management exercise",
+      "heart rate variability recovery",
+      "injury recovery timeline"
+    ]
+  },
+
+  "contentRewriteRules": {
+    "tone": "professional yet engaging",
+    "targetAudience": "fitness enthusiasts and health-conscious individuals",
+    "styleGuide": {
+      "avoidJargon": true,
+      "includePracticalTips": true,
+      "addPersonalInsights": true,
+      "maintainObjectivity": true,
+      "includeDataPoints": true,
+      "provideActionableAdvice": true
+    },
+    "requiredSections": [
+      "introduction",
+      "key insights",
+      "practical tips",
+      "recommendations",
+      "conclusion"
+    ],
+    "seoOptimization": {
+      "keywordDensity": "1-2%",
+      "metaDescriptionLength": "150-160 characters",
+      "titleLength": "50-60 characters",
+      "includeAltText": true,
+      "internalLinking": true
+    }
+  },
+
+  "publishingSchedule": {
+    "frequency": "daily",
+    "articlesPerDay": "7-14",
+    "preferredPublishingTimes": ["09:00", "13:00", "17:00"],
+    "categoriesPerDay": {
+      "fitness-training": 2,
+      "running": 1,
+      "nutrition": 2,
+      "weight-management": 1,
+      "yoga-mobility": 1,
+      "gear-equipment": 1,
+      "recovery-sleep": 1
+    }
+  },
+
+  "qualityFilters": {
+    "minWordCount": 800,
+    "maxWordCount": 2500,
+    "requiredImages": 2,
+    "uniqueContentThreshold": 80,
+    "readabilityScore": "B+",
+    "spamFilterKeywords": ["casino", "gambling", "adult content", "steroids for sale"],
+    "sourceReputationCheck": true
+  },
+
+  "aiGenerationSettings": {
+    "temperature": 0.7,
+    "maxTokens": 2000,
+    "model": "deepseek-chat",
+    "systemPrompt": "You are a professional sports and health writer with expertise in strength training, running, nutrition, and wellness. Write engaging, evidence-based articles in English that provide practical value to fitness enthusiasts while maintaining journalistic integrity. All content must be written in English only.",
+    "customInstructions": [
+      "Always write in English only",
+      "Include recent exercise science findings or statistics when available",
+      "Add specific, actionable training and nutrition advice",
+      "Mention safety considerations and proper form cues",
+      "Account for different fitness levels (beginner to advanced)",
+      "Provide realistic timelines for results and progress",
+      "Include recovery and injury prevention considerations",
+      "Suggest alternatives for different equipment and environments",
+      "Add practical tips from coaching perspectives",
+      "Write in a professional yet engaging tone suitable for fitness enthusiasts of all levels"
+    ]
+  }
+}

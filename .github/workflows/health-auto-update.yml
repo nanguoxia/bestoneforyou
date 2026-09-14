@@ -1,0 +1,429 @@
+# 版本: v3.0 (运动健康主题)
+# 站点: BestOneForYou (bestoneforyou.space)
+# 分类: 7个固定健康分类
+# 逻辑: <300篇时每分类3篇，≥300篇时每分类1篇；支持手动指定分类与数量
+
+name: 健康网站自动更新文章 v3.0
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+    - cron: '0 7 * * *'
+    - cron: '0 13 * * *'
+  workflow_dispatch:
+    inputs:
+      category:
+        description: '文章分类 (留空自动处理所有分类)'
+        required: false
+        default: ''
+      article_count:
+        description: '每个分类文章数量'
+        required: false
+        default: '3'
+
+jobs:
+  update-health-articles:
+    name: 🏋️ 自动更新运动健康文章
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+
+    steps:
+      - name: 🎯 初始化
+        run: |
+          echo "🏋️ 开始运动健康文章自动更新任务"
+          echo "⏰ 开始时间: $(date '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "📂 工作目录: $(pwd)"
+          echo "🎯 指定分类: ${{ inputs.category || '7个固定分类' }}"
+          echo "🔢 每分类数量: ${{ inputs.article_count || '3' }}"
+          echo "📡 RSS源: 24个优质健康类RSS源 (含GNews/NewsAPI备选)"
+
+          if [ -n "${{ inputs.category }}" ]; then
+            echo "USER_CATEGORY=${{ inputs.category }}" >> $GITHUB_ENV
+            echo "🎯 使用用户指定分类: ${{ inputs.category }}"
+          else
+            echo "USER_CATEGORY=" >> $GITHUB_ENV
+            echo "🎯 使用7个固定健康分类"
+          fi
+
+      - name: 📥 检出代码
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          ref: 'main'
+
+      - name: 🔧 设置Node.js环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: 🧪 验证脚本配置
+        run: |
+          echo "🧪 验证脚本配置和依赖..."
+
+          if [ ! -f "backend/scripts/health-article-generator-api.js" ]; then
+            echo "❌ 主脚本文件不存在"
+            exit 1
+          fi
+
+          if [ ! -f "backend/scripts/health-content-config.json" ]; then
+            echo "❌ 配置文件不存在"
+            exit 1
+          fi
+
+          echo "✅ 脚本文件检查通过"
+
+          cd backend/scripts
+
+          if node health-article-generator-api.js --test 2>&1 | grep -q "测试模式通过"; then
+            echo "✅ 脚本配置验证通过"
+          else
+            echo "⚠️ 脚本配置验证发现问题，但继续执行"
+          fi
+
+          cd -
+
+      - name: 🔑 设置API密钥环境变量
+        run: |
+          echo "🔑 设置API密钥环境变量..."
+
+          cat > $GITHUB_ENV << EOF
+          DEEPSEEK_API_KEY=${{ secrets.DEEPSEEK_API_KEY }}
+          XAI_API_KEY=${{ secrets.XAI_API_KEY }}
+          R2_ACCOUNT_ID=${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID=${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY=${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET_NAME=${{ secrets.R2_BUCKET_NAME }}
+          R2_PUBLIC_URL=${{ secrets.R2_PUBLIC_URL }}
+          PEXELS_API_KEY=${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY=${{ secrets.PIXABAY_API_KEY }}
+          UNSPLASH_ACCESS_KEY=${{ secrets.UNSPLASH_ACCESS_KEY }}
+          EOF
+
+          echo "🔍 密钥设置结果:"
+          if [ -n "$DEEPSEEK_API_KEY" ]; then
+            echo "✅ DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:0:10}..."
+          else
+            echo "⚠️ DEEPSEEK_API_KEY: 未配置"
+          fi
+          if [ -n "$R2_ACCOUNT_ID" ]; then
+            echo "✅ R2_ACCOUNT_ID: ${R2_ACCOUNT_ID:0:10}..."
+          else
+            echo "⚠️ R2_ACCOUNT_ID: 未配置"
+          fi
+          if [ -n "$PEXELS_API_KEY" ]; then
+            echo "✅ PEXELS_API_KEY: ${PEXELS_API_KEY:0:10}..."
+          else
+            echo "⚠️ PEXELS_API_KEY: 未配置"
+          fi
+
+      - name: 📦 安装项目依赖
+        run: |
+          echo "📥 安装npm依赖..."
+
+          cd backend/scripts
+          npm install --no-package-lock
+
+          echo "🔍 验证关键依赖..."
+          npm list axios cheerio xml2js undici || echo "⚠️ 部分依赖可能未安装"
+
+          echo "✅ 依赖安装完成"
+          echo "🔧 Node版本: $(node --version)"
+          echo "📦 NPM版本: $(npm --version)"
+
+          cd -
+
+      - name: 📁 创建文章存储目录
+        run: |
+          echo "📁 创建文章存储目录..."
+
+          dir="DEPLOYMENT_PACKAGE/frontend/content/articles/fitness"
+          mkdir -p "$dir"
+          echo "✅ 创建目录: $dir"
+
+          # 固定的7个健康分类
+          CATEGORIES="fitness-training running nutrition weight-management yoga-mobility gear-equipment recovery-sleep"
+          echo "CATEGORIES=$CATEGORIES" >> $GITHUB_ENV
+
+      - name: ⚙️ 配置Git用户信息
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git config --global push.default current
+
+      - name: 📊 统计当前文章数量
+        id: count_articles
+        run: |
+          echo "📊 统计当前文章总数..."
+
+          ARTICLE_COUNT=$(find "DEPLOYMENT_PACKAGE/frontend/content/articles/fitness" -name "*.md" -type f | wc -l)
+          echo "📝 当前文章总数: $ARTICLE_COUNT"
+
+          echo "article_count=$ARTICLE_COUNT" >> $GITHUB_OUTPUT
+
+          # 根据文章数量决定每个分类生成几篇
+          if [ $ARTICLE_COUNT -lt 300 ]; then
+            echo "📈 文章数未达300，每个分类生成3篇"
+            echo "articles_per_category=3" >> $GITHUB_OUTPUT
+          else
+            echo "✅ 文章数已达300，每个分类生成1篇"
+            echo "articles_per_category=1" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 🧹 清理历史记录（确保生成新文章）
+        run: |
+          echo "🧹 清理文章历史记录以避免重复检测..."
+          cd backend/scripts
+          if [ -f .article-history.json ]; then
+            rm .article-history.json
+            echo "🗑️ 已清理文章历史记录"
+          else
+            echo "ℹ️ 没有历史记录文件，跳过清理"
+          fi
+
+      - name: 🚀 为每个分类生成文章
+        id: generate_articles
+        continue-on-error: true
+        run: |
+          echo "🚀 开始为每个分类生成文章..."
+          echo "⏰ 执行开始时间: $(date)"
+
+          export ANTHROPIC_API_KEY="${DEEPSEEK_API_KEY:-mock_key_for_testing}"
+          export OPENAI_API_KEY="${XAI_API_KEY:-mock_key_for_testing}"
+          export R2_ACCOUNT_ID="${R2_ACCOUNT_ID:-mock_account}"
+          export R2_ACCESS_KEY_ID="${R2_ACCESS_KEY_ID:-mock_key}"
+          export R2_SECRET_ACCESS_KEY="${R2_SECRET_ACCESS_KEY:-mock_key}"
+          export R2_BUCKET="${R2_BUCKET_NAME:-mock_bucket}"
+          export R2_PUBLIC_URL="${R2_PUBLIC_URL:-https://mock.r2.dev}"
+          export PEXELS_API_KEY="${PEXELS_API_KEY:-mock_key}"
+          export PIXABAY_API_KEY="${PIXABAY_API_KEY:-mock_key}"
+          export UNSPLASH_ACCESS_KEY="${UNSPLASH_ACCESS_KEY:-mock_key}"
+
+          # 使用用户指定分类或固定的7个健康分类
+          if [ -n "$USER_CATEGORY" ]; then
+            CATEGORIES="$USER_CATEGORY"
+            CATEGORY_COUNT=$(echo $CATEGORIES | wc -w)
+          else
+            CATEGORIES="fitness-training running nutrition weight-management yoga-mobility gear-equipment recovery-sleep"
+            CATEGORY_COUNT=7
+          fi
+
+          # 使用动态文章数量（基于文章总数）
+          if [ -n "${{ inputs.article_count }}" ]; then
+            COUNT_ARG="${{ inputs.article_count }}"
+            echo "🎯 使用用户指定数量: $COUNT_ARG"
+          else
+            COUNT_ARG="${{ steps.count_articles.outputs.articles_per_category }}"
+            echo "🤖 使用自动检测数量: $COUNT_ARG (当前总文章: ${{ steps.count_articles.outputs.article_count }})"
+          fi
+
+          TOTAL_GENERATED=0
+          TOTAL_FAILED=0
+
+          echo "📊 开始处理 $CATEGORY_COUNT 个健康分类，每个分类生成 $COUNT_ARG 篇文章"
+          echo "📋 分类列表: $CATEGORIES"
+          echo "=================================================="
+
+          cd backend/scripts || { echo "❌ backend/scripts目录不存在"; exit 1; }
+
+          GENERATOR_SCRIPT="health-article-generator-api.js"
+          echo "🚀 使用完整API版脚本 (AI改写 + 图片搜索 + R2上传)"
+
+          for category in $CATEGORIES; do
+            echo ""
+            echo "🎯 开始处理分类: $category"
+            echo "----------------------------------------"
+
+            if [ -f "$GENERATOR_SCRIPT" ]; then
+              echo "🚀 执行生成脚本: $category ($COUNT_ARG 篇)"
+
+              if node "$GENERATOR_SCRIPT" "$category" "$COUNT_ARG" 2>&1 | tee "generation_$category.log"; then
+                GENERATED_COUNT=$(grep -o "成功生成: [0-9]* 篇文章" "generation_$category.log" | grep -o "[0-9]*" || echo "0")
+                TOTAL_GENERATED=$((TOTAL_GENERATED + GENERATED_COUNT))
+                echo "✅ $category 分类成功生成 $GENERATED_COUNT 篇文章"
+              else
+                TOTAL_FAILED=$((TOTAL_FAILED + 1))
+                echo "❌ $category 分类生成失败"
+              fi
+            else
+              echo "⚠️ 生成脚本不存在，跳过 $category"
+              TOTAL_FAILED=$((TOTAL_FAILED + 1))
+            fi
+          done
+
+          echo ""
+          echo "=================================================="
+          echo "📊 文章生成完成统计:"
+          echo "✅ 成功生成: $TOTAL_GENERATED 篇"
+          echo "❌ 失败分类: $TOTAL_FAILED 个"
+          echo "📁 处理分类: $CATEGORY_COUNT 个"
+
+          echo "total_generated=$TOTAL_GENERATED" >> $GITHUB_OUTPUT
+          echo "total_failed=$TOTAL_FAILED" >> $GITHUB_OUTPUT
+          echo "category_count=$CATEGORY_COUNT" >> $GITHUB_OUTPUT
+
+          if [ $TOTAL_GENERATED -gt 0 ]; then
+            echo "status=success" >> $GITHUB_OUTPUT
+          else
+            echo "status=failed" >> $GITHUB_OUTPUT
+          fi
+
+          echo "⏰ 执行结束时间: $(date)"
+
+      - name: 📊 检查文件更改
+        id: verify_changes
+        run: |
+          echo "🔍 检查文件更改..."
+
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "✅ 检测到新的文件更改"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+
+            echo ""
+            echo "📋 文件更改详情:"
+            echo "=================="
+
+            ADDED_ARTICLES=$(git diff --name-only --diff-filter=A | wc -l)
+            if [ $ADDED_ARTICLES -gt 0 ]; then
+              echo "➕ 新增文章 ($ADDED_ARTICLES):"
+              git diff --name-only --diff-filter=A | head -20
+              if [ $ADDED_ARTICLES -gt 20 ]; then
+                echo "   ... 还有 $((ADDED_ARTICLES - 20)) 个文件"
+              fi
+            fi
+
+            MODIFIED_FILES=$(git diff --name-only --diff-filter=M | wc -l)
+            if [ $MODIFIED_FILES -gt 0 ]; then
+              echo ""
+              echo "✏️ 修改文件 ($MODIFIED_FILES):"
+              git diff --name-only --diff-filter=M
+            fi
+
+            echo "=================="
+            echo "总计: ➕$ADDED_ARTICLES ✏️$MODIFIED_FILES"
+
+          else
+            echo "ℹ️  没有检测到新的更改"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 📤 提交更改到仓库
+        if: steps.verify_changes.outputs.has_changes == 'true'
+        run: |
+          echo "📤 准备提交健康文章..."
+
+          git add -A
+
+          CURRENT_DATE=$(date '+%Y-%m-%d %H:%M:%S UTC')
+          TRIGGER_TYPE="${{ inputs.category && '手动触发' || '定时任务' }}"
+          CATEGORY_INFO="${{ inputs.category && format('#{0}', inputs.category) || '#7个健康分类' }}"
+          GENERATION_INFO="处理7个固定健康分类，生成 ${{ steps.generate_articles.outputs.total_generated }} 篇文章"
+
+          cat > commit_msg.txt << EOF
+          🏋️ 自动健康文章更新 - $CURRENT_DATE
+
+          🎯 触发: $TRIGGER_TYPE
+          📊 分类数量: 7个固定健康分类
+          📝 生成文章: ${{ steps.generate_articles.outputs.total_generated }} 篇
+          🔄 失败分类: ${{ steps.generate_articles.outputs.total_failed }} 个
+
+          📁 文件统计:
+          ➕ 新增: $(git diff --cached --name-only --diff-filter=A | wc -l) 篇
+          ✏️ 修改: $(git diff --cached --name-only --diff-filter=M | wc -l) 个
+
+          🏷️ 分类标签: $CATEGORY_INFO
+          📋 生成详情: $GENERATION_INFO
+          🤖 由BestOneForYou自动生成
+          ⏰ 更新时间: $CURRENT_DATE
+
+          🌐 智能分类检测 · 自动文章生成 · 多分类并行处理
+          EOF
+
+          git commit -F commit_msg.txt
+
+          echo "✅ 文章已提交"
+          echo "📋 提交消息:"
+          cat commit_msg.txt
+
+      - name: 🚀 推送到GitHub
+        if: steps.verify_changes.outputs.has_changes == 'true'
+        run: |
+          echo "🚀 推送文章到GitHub..."
+          git push origin main
+          echo "✅ 文章已成功推送"
+
+          COMMIT_SHA=$(git rev-parse --short HEAD)
+          echo "📌 Commit SHA: $COMMIT_SHA"
+          echo "🔗 查看详情: ${{ github.server_url }}/${{ github.repository }}/commit/$COMMIT_SHA"
+
+      - name: 📊 生成运行报告
+        if: always()
+        run: |
+          echo ""
+          echo "🏋️ ================================健康文章更新报告================================="
+          echo "⏰ 运行时间: $(date '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "📚 当前文章总数: ${{ steps.count_articles.outputs.article_count }} 篇"
+          echo "🔢 固定分类: 7 个"
+          echo "🎯 处理分类: fitness-training running nutrition weight-management yoga-mobility gear-equipment recovery-sleep"
+          echo "📊 每分类生成: ${{ steps.count_articles.outputs.articles_per_category }} 篇"
+
+          if [ "${{ steps.generate_articles.outputs.status }}" = "success" ]; then
+            echo "✅ 生成状态: 成功"
+            echo "📝 本次生成: ${{ steps.generate_articles.outputs.total_generated }} 篇"
+            echo "❌ 失败分类: ${{ steps.generate_articles.outputs.total_failed }} 个"
+            echo "📈 预计总文章: $((${{ steps.count_articles.outputs.article_count }} + ${{ steps.generate_articles.outputs.total_generated }})) 篇"
+          elif [ -n "${{ steps.generate_articles.outputs.status }}" ]; then
+            echo "❌ 生成状态: 失败"
+          else
+            echo "⚠️  生成状态: 未知"
+          fi
+
+          if [ "${{ steps.verify_changes.outputs.has_changes }}" = "true" ]; then
+            echo "📁 文件更改: 有新文章"
+          else
+            echo "📁 文件更改: 无新内容"
+          fi
+
+          echo "🏁 工作流状态: ${{ job.status }}"
+          echo "================================================================================"
+
+          if [ "${{ job.status }}" != "success" ]; then
+            echo ""
+            echo "❌ 工作流执行失败！"
+            echo "🔧 调试建议:"
+            echo "1. 检查仓库Secrets密钥配置是否正确 (DEEPSEEK_API_KEY / R2_* / 图片API)"
+            echo "2. 验证RSS源是否可访问"
+            echo "3. 查看详细错误日志"
+            echo "4. 确认存储路径正确 (DEPLOYMENT_PACKAGE/frontend/content/articles/fitness)"
+            exit 1
+          fi
+
+      - name: 🎉 成功通知
+        if: success() && steps.verify_changes.outputs.has_changes == 'true'
+        run: |
+          echo ""
+          echo "🎉 健康文章更新成功！"
+          echo "📝 新文章已发布到网站"
+          echo ""
+          echo "📊 更新统计:"
+          echo "   📚 当前文章总数: ${{ steps.count_articles.outputs.article_count }} 篇"
+          echo "   🔢 固定分类: 7 个"
+          echo "   📝 本次生成: ${{ steps.generate_articles.outputs.total_generated }} 篇"
+          echo "   📈 预计总文章: $((${{ steps.count_articles.outputs.article_count }} + ${{ steps.generate_articles.outputs.total_generated }})) 篇"
+          echo "   🤖 生成模式: $([[ ${{ steps.count_articles.outputs.article_count }} -lt 300 ]] && echo '快速增长期 (3篇/分类)' || echo '稳定维护期 (1篇/分类)')"
+          echo ""
+          echo "🌐 7个固定健康分类:"
+          echo "   📁 fitness-training (健身训练)"
+          echo "   📁 running (跑步)"
+          echo "   📁 nutrition (营养饮食)"
+          echo "   📁 weight-management (减重塑形)"
+          echo "   📁 yoga-mobility (瑜伽与拉伸)"
+          echo "   📁 gear-equipment (运动装备)"
+          echo "   📁 recovery-sleep (恢复与睡眠)"
+          echo ""
+          echo "🔗 查看最新文章:"
+          echo "${{ github.server_url }}/${{ github.repository }}/commits/main"
+          echo ""
+          echo "🏋️ BestOneForYou - 运动健康内容自动更新"

@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects
+# vercel.json rewrites 迁移到此处
+# /:domain/:path* -> /[domain]/:path* (如需要取消注释)
+# /:domain/:path*  /[domain]/:path*  200

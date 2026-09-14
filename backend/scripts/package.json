@@ -1,0 +1,31 @@
+{
+  "name": "health-article-generator",
+  "version": "3.0.0",
+  "description": "AI-powered sports and health article generator - Lightweight API version",
+  "main": "health-article-generator-api.js",
+  "scripts": {
+    "start": "node health-article-generator-api.js",
+    "generate": "node health-article-generator-api.js"
+  },
+  "keywords": [
+    "fitness",
+    "health",
+    "articles",
+    "ai",
+    "rss",
+    "api-integration"
+  ],
+  "author": "BestOneForYou",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1046.0",
+    "@aws-sdk/s3-request-presigner": "^3.1046.0",
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "undici": "^6.0.0",
+    "xml2js": "^0.6.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

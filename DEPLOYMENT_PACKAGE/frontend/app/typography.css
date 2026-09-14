@@ -1,0 +1,305 @@
+/**
+ * 统一字体系统与排版规范
+ * Typography System for BestOneForYou
+ */
+
+/* ========== 字体变量 ========== */
+:root {
+  --font-display: var(--font-serif);
+  --font-body: var(--font-inter);
+  --font-code: var(--font-mono);
+}
+
+/* ========== 排版层次 ========== */
+
+/* Display - 用于超大标题（Hero区域） */
+.text-display {
+  @apply font-serif;
+  @apply text-6xl md:text-7xl lg:text-8xl;
+  @apply font-bold;
+  @apply leading-tight;
+  @apply tracking-tight;
+  letter-spacing: -0.03em;
+}
+
+/* Headline - 用于主标题（Section标题） */
+.text-headline {
+  @apply font-serif;
+  @apply text-3xl md:text-4xl lg:text-5xl;
+  @apply font-bold;
+  @apply leading-tight;
+  letter-spacing: -0.02em;
+}
+
+/* Title - 用于卡片标题、文章标题 */
+.text-title {
+  @apply font-serif;
+  @apply text-xl md:text-2xl;
+  @apply font-semibold;
+  @apply leading-snug;
+}
+
+/* Subtitle - 用于副标题、描述 */
+.text-subtitle {
+  @apply font-sans;
+  @apply text-base md:text-lg;
+  @apply font-medium;
+  @apply leading-relaxed;
+}
+
+/* Body - 用于正文内容 */
+.text-body {
+  @apply font-sans;
+  @apply text-base;
+  @apply leading-relaxed;
+}
+
+/* Caption - 用于小标题、标签 */
+.text-caption {
+  @apply font-sans;
+  @apply text-sm;
+  @apply font-medium;
+  @apply leading-snug;
+}
+
+/* Overline - 用于装饰性小标题 */
+.text-overline {
+  @apply font-sans;
+  @apply text-xs;
+  @apply font-semibold;
+  @apply tracking-widest;
+  @apply uppercase;
+}
+
+/* ========== 特殊用途 ========== */
+
+/* 导航字体 */
+.nav-link {
+  @apply font-sans;
+  @apply text-xs;
+  @apply font-semibold;
+  @apply tracking-wide;
+  @apply uppercase;
+}
+
+/* 按钮字体 */
+.btn-text {
+  @apply font-sans;
+  @apply text-sm;
+  @apply font-semibold;
+  @apply tracking-wide;
+}
+
+/* 元数据字体 */
+.meta-text {
+  @apply font-sans;
+  @apply text-xs;
+  @apply font-normal;
+  @apply text-muted-foreground;
+}
+
+/* 代码/数据字体 */
+.code-text {
+  @apply font-mono;
+  @apply text-sm;
+  @apply tabular-nums;
+}
+
+/* ========== 文章专用 ========== */
+
+/* 文章标题 */
+.article-title {
+  @apply font-serif;
+  @apply text-3xl md:text-4xl lg:text-5xl;
+  @apply font-bold;
+  @apply leading-tight;
+  letter-spacing: -0.02em;
+}
+
+/* 文章副标题 */
+.article-subtitle {
+  @apply font-serif;
+  @apply text-xl md:text-2xl;
+  @apply font-semibold;
+  @apply leading-relaxed;
+}
+
+/* 文章正文 */
+.article-body {
+  @apply font-sans;
+  @apply text-base;
+  @apply leading-loose;
+  max-width: 75ch; /* 最佳阅读宽度 */
+}
+
+/* 引用文字 */
+.quote-text {
+  @apply font-serif;
+  @apply text-xl md:text-2xl;
+  @apply italic;
+  @apply leading-relaxed;
+}
+
+/* ========== 字重规范化 ========== */
+
+/* 轻字重 */
+.font-light {
+  font-weight: 300;
+}
+
+/* 常规字重 */
+.font-regular {
+  font-weight: 400;
+}
+
+/* 中等字重 */
+.font-medium {
+  font-weight: 500;
+}
+
+/* 半粗字重 */
+.font-semibold {
+  font-weight: 600;
+}
+
+/* 粗字重 */
+.font-bold {
+  font-weight: 700;
+}
+
+/* ========== 行高系统 ========== */
+
+/* 紧凑行高 */
+.leading-tight-custom {
+  line-height: 1.2;
+}
+
+/* 标准行高 */
+.leading-standard {
+  line-height: 1.5;
+}
+
+/* 宽松行高 */
+.leading-relaxed-custom {
+  line-height: 1.7;
+}
+
+/* ========== 字间距系统 ========== */
+
+/* 紧凑字间距 */
+.tracking-tight-custom {
+  letter-spacing: -0.02em;
+}
+
+/* 标准字间距 */
+.tracking-normal {
+  letter-spacing: 0;
+}
+
+/* 宽松字间距 */
+.tracking-wide-custom {
+  letter-spacing: 0.05em;
+}
+
+/* 超宽字间距 */
+.tracking-widest {
+  letter-spacing: 0.1em;
+}
+
+/* ========== 响应式字体大小 ========== */
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  .text-display {
+    @apply text-5xl;
+  }
+
+  .text-headline {
+    @apply text-3xl;
+  }
+
+  .article-title {
+    @apply text-2xl;
+  }
+}
+
+/* ========== 特殊效果 ========== */
+
+/* 渐变文字效果 */
+.text-gradient {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, var(--tw-gradient-from), var(--tw-gradient-to));
+}
+
+/* 优雅的衬线体强调 */
+.serif-accent {
+  @apply font-serif;
+  @apply italic;
+  @apply text-brand-primary;
+}
+
+/* 现代无衬线体强调 */
+.sans-accent {
+  @apply font-sans;
+  @apply font-semibold;
+  @apply text-brand-accent;
+}
+
+/* ========== 阅读优化 ========== */
+
+/* 长文本阅读优化 */
+.readable-text {
+  @apply text-body;
+  text-align: left;
+  text-wrap: wrap;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* 短文本阅读优化 */
+.short-text {
+  @apply text-subtitle;
+  text-align: left;
+}
+
+/* ========== 杂志风格排版 ========== */
+
+/* 杂志标题风格 */
+.magazine-title {
+  @apply font-serif;
+  @apply font-bold;
+  @apply text-headline;
+  @apply leading-none;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+/* 杂志副标题风格 */
+.magazine-subtitle {
+  @apply font-serif;
+  @apply text-lg md:text-xl;
+  @apply italic;
+  @apply text-muted-foreground;
+  @apply leading-relaxed;
+}
+
+/* 杂志元信息风格 */
+.magazine-meta {
+  @apply font-sans;
+  @apply text-xs;
+  @apply tracking-widest;
+  @apply uppercase;
+  @apply text-muted-foreground;
+}
+
+/* ========== 数字字体 ========== */
+
+.tabular-nums-custom {
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+.proportional-nums {
+  font-feature-settings: "pnum";
+  font-variant-numeric: proportional-nums;
+}
