@@ -14,7 +14,7 @@ export const siteConfig: SiteConfig = {
     { id: 'nutrition', name: 'Nutrition', slug: 'nutrition', icon: '🥗', description: 'Evidence-based nutrition and healthy eating' },
     { id: 'weight-management', name: 'Weight Management', slug: 'weight-management', icon: '⚖️', description: 'Sustainable strategies for fat loss and healthy weight' },
     { id: 'yoga-mobility', name: 'Yoga & Mobility', slug: 'yoga-mobility', icon: '🧘', description: 'Flexibility, mobility, and mind-body practice' },
-    { id: 'gear-equipment', name: 'Gear & Equipment', slug: 'gear-equipment', icon: '�', description: 'Reviews of the best fitness gear and equipment' },
-    { id: 'recovery-sleep', name: 'Recovery & Sleep', slug: 'recovery-sleep', icon: '�', description: 'Rest, recovery, and sleep optimization' },
+    { id: 'gear-equipment', name: 'Gear & Equipment', slug: 'gear-equipment', icon: '⚙️', description: 'Reviews of the best fitness gear and equipment' },
+    { id: 'recovery-sleep', name: 'Recovery & Sleep', slug: 'recovery-sleep', icon: '😴', description: 'Rest, recovery, and sleep optimization' },
   ],
 };
