@@ -58,6 +58,11 @@ class HealthArticleGeneratorAPI {
     this.r2SecretAccessKey = process.env.R2_SECRET_ACCESS_KEY || '';
     this.r2BucketName = process.env.R2_BUCKET_NAME || '';
     this.r2PublicUrl = process.env.R2_PUBLIC_URL || '';
+    // R2 管辖区（默认 us；置空则使用不带管辖区后缀的默认 endpoint）
+    this.r2Jurisdiction = process.env.R2_JURISDICTION !== undefined ? process.env.R2_JURISDICTION : 'us';
+    this.r2S3Host = this.r2Jurisdiction
+      ? `${this.r2AccountId}.${this.r2Jurisdiction}.r2.cloudflarestorage.com`
+      : `${this.r2AccountId}.r2.cloudflarestorage.com`;
     this.pexelsApiKey = process.env.PEXELS_API_KEY || '';
     this.pixabayApiKey = process.env.PIXABAY_API_KEY || '';
     this.unsplashAccessToken = process.env.UNSPLASH_ACCESS_KEY || '';
@@ -1166,7 +1171,7 @@ Return the rewritten article only, without explanations.
       const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
 
       // 规范请求
-      const canonicalHeaders = `host:${this.r2AccountId}.r2.cloudflarestorage.com\nx-amz-content-sha256:UNSIGNED-PAYLOAD\nx-amz-date:${amzDate}\n`;
+      const canonicalHeaders = `host:${this.r2S3Host}\nx-amz-content-sha256:UNSIGNED-PAYLOAD\nx-amz-date:${amzDate}\n`;
       const signedHeaders = 'host;x-amz-content-sha256;x-amz-date';
       const canonicalRequest = `${method}\n${path}\n\n${canonicalHeaders}\n${signedHeaders}\nUNSIGNED-PAYLOAD`;
 
