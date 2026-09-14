@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/6392825/pexels-photo-6392825.jp
 images: [
   "https://images.pexels.com/photos/6392825/pexels-photo-6392825.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p class=\"rte-simple-html-paragraph\">We found genuine, editor-tested sales on brands like Garmin, Apple, Brooks and more.</p>"
+excerpt: "We found genuine, editor-tested sales on brands like Garmin, Apple, Brooks and more."
 ---
 
 

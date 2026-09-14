@@ -1527,10 +1527,23 @@ ${content}
   }
 
   /**
+   * 清除文本中的HTML标签（AI改写可能把RSS源的 <b>/<p>/<em> 等标签带进标题或摘要）
+   */
+  stripHtml(text) {
+    return (text || '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/&nbsp;/gi, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  /**
    * 生成Frontmatter数据
    */
   generateFrontmatter(article, category, imageUrl) {
-    const slug = this.generateSlug(article.title);
+    // 标题/摘要先剥离HTML标签，避免 <b><strong> 等标签污染标题、摘要和slug
+    const cleanTitle = this.stripHtml(article.title);
+    const slug = this.generateSlug(cleanTitle);
 
     // 生成当前日期（使用UTC避免时区问题）
     const now = new Date();
@@ -1540,7 +1553,7 @@ ${content}
     const date = `${year}-${month}-${day}`;
 
     const tags = this.generateTags(article, category);
-    const description = article.description?.replace(/"/g, '\\"').substring(0, 160) || 'Sports and health insights and practical advice';
+    const description = this.stripHtml(article.description).replace(/"/g, '\\"').substring(0, 160) || 'Sports and health insights and practical advice';
 
     // 生成分类名称（与前端 site.config.ts 的 name 一致）
     const categoryNames = {
@@ -1571,7 +1584,7 @@ ${content}
     const author = authorsForCategory[Math.floor(Math.random() * authorsForCategory.length)];
 
     return `---
-title: "${article.title.replace(/"/g, '\\"')}"
+title: "${cleanTitle.replace(/"/g, '\\"')}"
 slug: "${slug}"
 date: "${date}"
 category: "${categoryName}"

@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/5302584/pexels-photo-5302584.jp
 images: [
   "https://images.pexels.com/photos/5302584/pexels-photo-5302584.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p class=\"rte-simple-html-paragraph\">You can still save big on some of Garmin’s highest-rated models.</p>"
+excerpt: "You can still save big on some of Garmin’s highest-rated models."
 ---
 
 

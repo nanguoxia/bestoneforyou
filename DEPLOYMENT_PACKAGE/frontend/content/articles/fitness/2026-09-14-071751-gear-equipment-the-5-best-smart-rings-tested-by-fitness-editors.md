@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/33501835/pexels-photo-33501835.
 images: [
   "https://images.pexels.com/photos/33501835/pexels-photo-33501835.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p>Great-looking fitness-tracking tech right on your finger.</p>"
+excerpt: "Great-looking fitness-tracking tech right on your finger."
 ---
 
 

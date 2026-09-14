@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/3773984/pexels-photo-3773984.jp
 images: [
   "https://images.pexels.com/photos/3773984/pexels-photo-3773984.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p class=\"rte-simple-html-paragraph\">Ripped celebs like Frank Grillo, Dave Bautista, Christopher Meloni share their training secrets.</p>"
+excerpt: "Ripped celebs like Frank Grillo, Dave Bautista, Christopher Meloni share their training secrets."
 ---
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Christopher Rodriguez-Marquette From <i><em>Reacher </em></i>Has Been on Your Screen for Decades"
-slug: "christopher-rodriguez-marquette-from-iemreacher-emihas-been-on-your-screen-for-decades"
+title: "Christopher Rodriguez-Marquette From Reacher Has Been on Your Screen for Decades"
+slug: "christopher-rodriguez-marquette-from-reacher-has-been-on-your-screen-for-decades"
 date: "2026-09-14"
 category: "Gear & Equipment"
 tags: ["gear-equipment", "fitness", "health"]
@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/16062295/pexels-photo-16062295.
 images: [
   "https://images.pexels.com/photos/16062295/pexels-photo-16062295.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p class=\"rte-simple-html-paragraph\">Season 4’s Jacob has been a staple of some movies and shows you’ve definitely watched and enjoyed. </p>"
+excerpt: "Season 4’s Jacob has been a staple of some movies and shows you’ve definitely watched and enjoyed."
 ---
 
 

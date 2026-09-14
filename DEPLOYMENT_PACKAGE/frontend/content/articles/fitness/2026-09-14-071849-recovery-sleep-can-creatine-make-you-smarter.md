@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/31406896/pexels-photo-31406896.
 images: [
   "https://images.pexels.com/photos/31406896/pexels-photo-31406896.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p>Some supplement companies say yes. Here's the science.</p>"
+excerpt: "Some supplement companies say yes. Here's the science."
 ---
 
 

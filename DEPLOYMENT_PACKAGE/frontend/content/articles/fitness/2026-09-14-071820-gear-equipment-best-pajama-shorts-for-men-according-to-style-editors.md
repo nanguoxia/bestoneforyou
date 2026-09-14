@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/35071413/pexels-photo-35071413.
 images: [
   "https://images.pexels.com/photos/35071413/pexels-photo-35071413.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p class=\"rte-simple-html-paragraph\">Talk about making you feel right at home.</p>"
+excerpt: "Talk about making you feel right at home."
 ---
 
 

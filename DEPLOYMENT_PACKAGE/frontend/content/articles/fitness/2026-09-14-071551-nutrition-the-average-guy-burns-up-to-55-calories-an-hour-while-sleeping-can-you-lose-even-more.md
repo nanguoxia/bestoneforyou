@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/39368612/pexels-photo-39368612.
 images: [
   "https://images.pexels.com/photos/39368612/pexels-photo-39368612.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p class=\"rte-simple-html-paragraph\">One foolproof hack can help you maximize your overnight calorie burn.</p>"
+excerpt: "One foolproof hack can help you maximize your overnight calorie burn."
 ---
 
 

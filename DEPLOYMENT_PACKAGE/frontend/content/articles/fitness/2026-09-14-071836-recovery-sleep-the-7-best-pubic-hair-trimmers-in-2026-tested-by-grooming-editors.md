@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/33099595/pexels-photo-33099595.
 images: [
   "https://images.pexels.com/photos/33099595/pexels-photo-33099595.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p>These are the only tools I trust near my, er, tool.</p>"
+excerpt: "These are the only tools I trust near my, er, tool."
 ---
 
 

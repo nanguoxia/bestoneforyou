@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/6642939/pexels-photo-6642939.jp
 images: [
   "https://images.pexels.com/photos/6642939/pexels-photo-6642939.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p class=\"rte-simple-html-paragraph\">It’s exactly as weird as it sounds.</p>"
+excerpt: "It’s exactly as weird as it sounds."
 ---
 
 

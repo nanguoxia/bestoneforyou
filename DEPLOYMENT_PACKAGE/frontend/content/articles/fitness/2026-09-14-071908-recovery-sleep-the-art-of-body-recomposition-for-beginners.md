@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/12539640/pexels-photo-12539640.
 images: [
   "https://images.pexels.com/photos/12539640/pexels-photo-12539640.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p>Yes, you can lose fat and build muscle at the same time. The key: a new kind of plan that leverages the latest gym and nutrition science—and sets you up for "
+excerpt: "Yes, you can lose fat and build muscle at the same time. The key: a new kind of plan that leverages the latest gym and nutrition science—and sets you up for"
 ---
 
 

@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/4944004/pexels-photo-4944004.jp
 images: [
   "https://images.pexels.com/photos/4944004/pexels-photo-4944004.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p>Here’s how you can push for even stronger reps.</p>"
+excerpt: "Here’s how you can push for even stronger reps."
 ---
 
 

@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/28336303/pexels-photo-28336303.
 images: [
   "https://images.pexels.com/photos/28336303/pexels-photo-28336303.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p class=\"rte-simple-html-paragraph\">Take nearly 60% off home gym equipment, smart tech, workout apparel, and more.</p>"
+excerpt: "Take nearly 60% off home gym equipment, smart tech, workout apparel, and more."
 ---
 
 

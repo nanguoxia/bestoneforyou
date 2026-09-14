@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/32044922/pexels-photo-32044922.
 images: [
   "https://images.pexels.com/photos/32044922/pexels-photo-32044922.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p>We've got murder mysteries, stories of love and lust, and lots and lots of <em>Yellowstone</em>. And that's just the beginning.</p>"
+excerpt: "We've got murder mysteries, stories of love and lust, and lots and lots of Yellowstone. And that's just the beginning."
 ---
 
 

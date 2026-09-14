@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/4790266/pexels-photo-4790266.jp
 images: [
   "https://images.pexels.com/photos/4790266/pexels-photo-4790266.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p class=\"rte-simple-html-paragraph\">Shop brand names like TaylorMade, Adidas, and more.</p>"
+excerpt: "Shop brand names like TaylorMade, Adidas, and more."
 ---
 
 

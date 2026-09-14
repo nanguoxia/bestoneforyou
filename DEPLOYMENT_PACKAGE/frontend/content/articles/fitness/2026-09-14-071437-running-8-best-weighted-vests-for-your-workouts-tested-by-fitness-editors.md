@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/25696414/pexels-photo-25696414.
 images: [
   "https://images.pexels.com/photos/25696414/pexels-photo-25696414.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p>Add some extra heft to all of your favorite bodyweight activities.</p>"
+excerpt: "Add some extra heft to all of your favorite bodyweight activities."
 ---
 
 

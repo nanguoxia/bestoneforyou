@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/9545351/pexels-photo-9545351.jp
 images: [
   "https://images.pexels.com/photos/9545351/pexels-photo-9545351.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p>You don’t need to fly overseas to regrow hair. </p>"
+excerpt: "You don’t need to fly overseas to regrow hair."
 ---
 
 

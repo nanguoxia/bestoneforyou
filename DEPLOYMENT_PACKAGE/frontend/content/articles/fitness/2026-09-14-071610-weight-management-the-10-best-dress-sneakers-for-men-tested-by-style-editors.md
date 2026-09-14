@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/38328113/pexels-photo-38328113.
 images: [
   "https://images.pexels.com/photos/38328113/pexels-photo-38328113.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p>They're low-key, but super comfortable and stylish.</p>"
+excerpt: "They're low-key, but super comfortable and stylish."
 ---
 
 

@@ -1,6 +1,6 @@
 ---
-title: "<b><strong>Why Staying on Your Antidepressant Is Out of Fashion—and Also Radically OK </strong></b>"
-slug: "bstrongwhy-staying-on-your-antidepressant-is-out-of-fashionand-also-radically-ok-strongb"
+title: "Why Staying on Your Antidepressant Is Out of Fashion—and Also Radically OK"
+slug: "why-staying-on-your-antidepressant-is-out-of-fashionand-also-radically-ok"
 date: "2026-09-14"
 category: "Fitness Training"
 tags: ["fitness-training", "fitness", "health"]
@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/5157292/pexels-photo-5157292.jp
 images: [
   "https://images.pexels.com/photos/5157292/pexels-photo-5157292.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p class=\"rte-simple-html-paragraph\">Not everyone’s “overprescribed.”</p>"
+excerpt: "Not everyone’s “overprescribed.”"
 ---
 
 

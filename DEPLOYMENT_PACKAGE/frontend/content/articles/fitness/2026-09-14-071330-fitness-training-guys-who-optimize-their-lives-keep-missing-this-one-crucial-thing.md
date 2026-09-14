@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/6682782/pexels-photo-6682782.jp
 images: [
   "https://images.pexels.com/photos/6682782/pexels-photo-6682782.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p class=\"rte-simple-html-paragraph\">Discipline can’t get you everywhere.</p>"
+excerpt: "Discipline can’t get you everywhere."
 ---
 
 

@@ -9,7 +9,7 @@ featuredImage: "https://pub-72fc2c7201a645ffa1e5b65b44be1573.r2.dev/fitness-imag
 images: [
   "https://pub-72fc2c7201a645ffa1e5b65b44be1573.r2.dev/fitness-images/2026-09-14-guys-who-optimize-their-lives-keep-miss.jpg"
 ]
-excerpt: "<p class=\"rte-simple-html-paragraph\">Discipline can’t get you everywhere.</p>"
+excerpt: "Discipline can’t get you everywhere."
 ---
 
 

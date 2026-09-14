@@ -9,7 +9,7 @@ featuredImage: "https://images.pexels.com/photos/38196138/pexels-photo-38196138.
 images: [
   "https://images.pexels.com/photos/38196138/pexels-photo-38196138.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
 ]
-excerpt: "<p class=\"rte-simple-html-paragraph\">Here’s what the term means and how to tell if you are one. </p>"
+excerpt: "Here’s what the term means and how to tell if you are one."
 ---
 
 
