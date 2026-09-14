@@ -121,7 +121,8 @@ class HealthArticleGeneratorAPI {
       try {
         this.s3Client = new S3Client({
           region: 'auto',
-          endpoint: `https://${this.r2AccountId}.r2.cloudflarestorage.com`,
+          endpoint: `https://${this.r2S3Host}`,
+          forcePathStyle: true,
           credentials: {
             accessKeyId: this.r2AccessKeyId,
             secretAccessKey: this.r2SecretAccessKey
