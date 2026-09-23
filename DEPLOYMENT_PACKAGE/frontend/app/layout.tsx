@@ -37,6 +37,11 @@ const oswald = Oswald({
 export const metadata: Metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
+  verification: {
+    other: {
+      "impact-site-verification": "503c2d22-7097-4e7a-9dfb-4617b1237adb",
+    },
+  },
 };
 
 export default async function RootLayout({
