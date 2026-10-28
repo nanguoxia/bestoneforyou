@@ -74,6 +74,15 @@ export function SiteFooter({ site }: SiteFooterProps) {
               </li>
               <li>
                 <Link
+                  href="/product"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  style={{ fontFamily: 'var(--font-inter)' }}
+                >
+                  Product
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/about"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                   style={{ fontFamily: 'var(--font-inter)' }}
