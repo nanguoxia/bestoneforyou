@@ -2,7 +2,7 @@
 title: "The Best Black Friday Fitness Deals, According to Our Editors"
 slug: "the-best-black-friday-fitness-deals-according-to-our-editors"
 date: "2026-11-17"
-category: "Running"
+category: "Gear & Equipment"
 tags: ["running", "fitness", "health"]
 author: "Emily Chen"
 featuredImage: "https://pub-72fc2c7201a645ffa1e5b65b44be1573.r2.dev/fitness-images/2026-11-17-the-best-black-friday-fitness-deals-acc.jpg"
